@@ -1,6 +1,6 @@
 #ifndef GAME_HPP
 #define GAME_HPP
-#include<SDL.h>
+#include <SDL2/SDL.h>
 #include<iostream>
 using namespace std;
 
