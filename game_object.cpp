@@ -9,18 +9,7 @@ game_object::game_object(const char* texturesheet, SDL_Renderer* ren, int x, int
 	ypos = y;
 }
 
-void game_object::Update()
-{
-	//Movement based on events happening ... change them here
-	//Rect positions and sizes can be changed here
-}
-
 void game_object::Render()
 {
 	SDL_RenderCopy(renderer, object_Tex, &src_rec, &des_rec);
-}
-
-game_object::~game_object()
-{
-
 }
