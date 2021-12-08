@@ -69,7 +69,10 @@ void game::HandleEvents() //Handle Various events happening
 	
 	if (event.type == SDL_KEYUP){
 		if (event.key.keysym.sym == SDLK_RETURN){
-			bullets.push_back(new Bullet("assets/bullet.png", renderer, player->getx(), player->gety(), window_height, window_width, 595, 420));
+			if(player->get_ammo() > 0){
+				bullets.push_back(new Bullet("assets/bullet.png", renderer, player->getx(), player->gety(), window_height, window_width, 595, 420));
+				player->set_ammo(player->get_ammo()-1);
+			}
 		}
 	}
     

@@ -12,6 +12,7 @@ class Player : public game_object{
             this->player_height = player_height;
             this->player_width = player_width;
             this->platform_height = platform_height;
+            this->ammo = 10;
 
             // initialising the player
             src_rec.h = player_height;
