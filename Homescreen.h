@@ -25,11 +25,23 @@ class Window
         Window();
         ~Window();
         void makeWindow(const char* name, int w, int h);
+        void set_button(const char* path,int x,int y);
     private:
       SDL_Window* window=NULL;
       SDL_Renderer* renderer=NULL;
       SDL_Surface* surface=NULL;
       SDL_Surface* bg_image=NULL;
+      SDL_Surface* button=NULL;
+};
+
+class Buttons
+{
+    public:
+        Buttons();
+        ~Buttons();
+        void mouse_click(int x,int y,int w,int h,int flag);
+    private:
+        int mx,my;
 };
 
 #endif
