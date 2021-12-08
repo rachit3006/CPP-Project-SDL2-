@@ -16,17 +16,29 @@ void Player::set_space_pressed(bool is_pressed){
 }
 
 void Player::update(){
-    if(des_rec.y == window_height-src_rec.h-platform_height || des_rec.y == platform_height){
-        initial_velocity = 0;
-    }
-    if(des_rec.y < window_height-src_rec.h-platform_height && !space_pressed){
-        final_velocity = initial_velocity - gravity;
-        des_rec.y += abs(((final_velocity*final_velocity) - (initial_velocity*initial_velocity))/(2*gravity));
+    cout << final_velocity << endl;
+    if(des_rec.y <= window_height-src_rec.h-platform_height && !space_pressed){
+        final_velocity = initial_velocity + gravity;
+        if(des_rec.y < platform_height) des_rec.y = platform_height;
+        if(des_rec.y + (((final_velocity*final_velocity) - (initial_velocity*initial_velocity))/(2*gravity)) > window_height-src_rec.h-platform_height){
+            des_rec.y = window_height-src_rec.h-platform_height;
+            final_velocity = initial_velocity = 0;
+        }
+        else{
+            des_rec.y += (((final_velocity*final_velocity) - (initial_velocity*initial_velocity))/(2*gravity));
+        }    
         initial_velocity = final_velocity;
     }
-    if(des_rec.y > platform_height && space_pressed){
-        final_velocity = initial_velocity + acceleration;
-        des_rec.y -= ((final_velocity*final_velocity) - (initial_velocity*initial_velocity))/(2*acceleration);
+    if(des_rec.y >= platform_height && space_pressed){
+        final_velocity = initial_velocity - acceleration;
+        if(des_rec.y > window_height-src_rec.h-platform_height) des_rec.y = window_height-src_rec.h-platform_height;
+        if(des_rec.y + (((final_velocity*final_velocity) - (initial_velocity*initial_velocity))/(-2*acceleration)) < platform_height){
+            des_rec.y = platform_height;
+            final_velocity = initial_velocity = 0;
+        }
+        else{
+            des_rec.y += (((final_velocity*final_velocity) - (initial_velocity*initial_velocity))/(-2*acceleration));
+        }    
         initial_velocity = final_velocity;
     }
 }

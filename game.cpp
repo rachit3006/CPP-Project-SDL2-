@@ -55,13 +55,22 @@ void game::HandleEvents() //Handle Various events happening
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
-	switch (event.type)
-	{
-	case(SDL_QUIT):
+	const  Uint8* keystates = SDL_GetKeyboardState(NULL);
+	if (event.type == SDL_QUIT)
 	{
 		is_running = false;
-		break;
 	}
+	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
+	{
+		//Event corresponding to Mouse click i.e shoot
+	}
+	if (keystates[SDL_SCANCODE_SPACE])
+	{
+		//Event for jump.
+		player->set_space_pressed(true);
+	}
+	else{
+		player->set_space_pressed(false);
 	}
 }
 
