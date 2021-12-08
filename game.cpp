@@ -47,8 +47,8 @@ void game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 
 	//Create Game_objects
-	player = new Player("assets/player.png", renderer, 0, 0, 400, 800, 85, 77);
-	background = new BackGround("assets/back.png", renderer, 0, 0);
+	player = new Player("assets/player.png", renderer, 0, 0, 600, 1500, 85, 77, 65);
+	background = new BackGround("assets/back.png", renderer, 0, 0, 600, 1500);
 }
 
 void game::HandleEvents() //Handle Various events happening
