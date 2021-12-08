@@ -2,23 +2,30 @@
 
 class Player : public game_object{
     private:
-        int ammo;
+        int ammo, window_height, window_width, player_height, player_width;
+        float gravity = 0.2, acceleration = 0.2, initial_velocity = 0, final_velocity = 0;
+        bool space_pressed = 1;
     public:
-        Player(const char* texturesheet, SDL_Renderer * ren, int x, int y):game_object(texturesheet, ren, x, y){
+        Player(const char* texturesheet, SDL_Renderer * ren, int x, int y, int window_height, int window_width, int player_height, int player_width):game_object(texturesheet, ren, x, y){
+            this->window_height = window_height;
+            this->window_width = window_width;
+            this->player_height = player_height;
+            this->player_width = player_width;
+
             // initialising the player
-            src_rec.h = 85;
-            src_rec.w = 77;
+            src_rec.h = player_height;
+            src_rec.w = player_width;
             src_rec.x = 0;
             src_rec.y = 0;
-            des_rec.h = 85;
-            des_rec.w = 75;
+            des_rec.h = player_height;
+            des_rec.w = player_width;
             des_rec.x = 0;
-            des_rec.y = 400-src_rec.h;
+            des_rec.y = window_height-src_rec.h;
         };
 
         int get_ammo();
         void set_ammo(int ammo);
 
-        void jump();
+        void update();
         void shoot();       
 };

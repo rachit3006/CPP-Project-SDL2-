@@ -2,7 +2,7 @@
 int main(int argc, char* args[])
 {
 	game* g = new game();
-	g->init("YO YO", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 400, false);
+	g->init("YO YO", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1500, 400, false);
 
 	const int FPS=60;
 	const int Frame_Delay = 1000 / FPS; //Expected Time between Frames

@@ -1,9 +1,11 @@
 #include"game.h"
 #include "Player.h"
+#include "BackGround.h"
 #include"TextureManager.h"
 #include"game_object.h"
 
 Player* player;
+BackGround* background;
 
 game::game()
 {
@@ -45,7 +47,8 @@ void game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 
 	//Create Game_objects
-	player = new Player("assets/player.png", renderer, 0, 0);
+	player = new Player("assets/player.png", renderer, 0, 0, 400, 800, 85, 77);
+	background = new BackGround("assets/back.png", renderer, 0, 0);
 }
 
 void game::HandleEvents() //Handle Various events happening
@@ -65,12 +68,14 @@ void game::HandleEvents() //Handle Various events happening
 void game::update() //Game Logic is Handled Here
 {
 	//Update your game objects here
+	player->update();
 }
 
 void game::render()
 {
 	SDL_RenderClear(renderer);
 	//Render Your game objects here from there respective functions
+	background->Render();
 	player->Render();
 	SDL_RenderPresent(renderer);
 }
