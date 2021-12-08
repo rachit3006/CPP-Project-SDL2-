@@ -4,6 +4,7 @@
 #include<SDL2/SDL_image.h>
 #include<SDL2/SDL.h>
 #include<SDL2/SDL_ttf.h>
+#include<SDL2/SDL_timer.h>
 #include<iostream>
 using namespace std;
 
@@ -25,8 +26,10 @@ class Window
         ~Window();
         void makeWindow(const char* name, int w, int h);
     private:
-      SDL_Window* window;
-      SDL_Renderer* renderer;
+      SDL_Window* window=NULL;
+      SDL_Renderer* renderer=NULL;
+      SDL_Surface* surface=NULL;
+      SDL_Surface* bg_image=NULL;
 };
 
 #endif
