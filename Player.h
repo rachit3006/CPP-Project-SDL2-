@@ -4,7 +4,7 @@ class Player : public game_object{
     private:
         int ammo, window_height, window_width, player_height, player_width, platform_height;
         float gravity = 0.2, acceleration = 0.2, initial_velocity = 0, final_velocity = 0;
-        bool space_pressed = false;
+        bool space_pressed = false, shoot = false;
     public:
         Player(const char* texturesheet, SDL_Renderer * ren, int x, int y, int window_height, int window_width, int player_height, int player_width, int platform_height):game_object(texturesheet, ren, x, y){
             this->window_height = window_height;
@@ -24,10 +24,11 @@ class Player : public game_object{
             des_rec.y = window_height-src_rec.h-platform_height;
         };
         
+        int getx();
+        int gety();
         int get_ammo();
         void set_ammo(int ammo);
         void set_space_pressed(bool is_pressed);
-
-        void update();
-        void shoot();       
+        
+        void update();     
 };

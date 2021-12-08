@@ -3,6 +3,14 @@
 
 using namespace std;
 
+int Player::getx(){
+    return des_rec.x;
+}
+
+int Player::gety(){
+    return des_rec.y;
+}
+
 int Player::get_ammo(){
     return ammo;
 }
@@ -16,7 +24,6 @@ void Player::set_space_pressed(bool is_pressed){
 }
 
 void Player::update(){
-    cout << final_velocity << endl;
     if(des_rec.y <= window_height-src_rec.h-platform_height && !space_pressed){
         final_velocity = initial_velocity + gravity;
         if(des_rec.y < platform_height) des_rec.y = platform_height;

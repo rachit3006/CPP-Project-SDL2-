@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "game.h"
+#include"TextureManager.h"
 class game_object
 {
 protected:
@@ -12,7 +13,12 @@ protected:
 
 public:
 	game_object(const char* texturesheet, SDL_Renderer * ren, int x, int y);
-	~game_object();
+	~game_object(){
+		SDL_DestroyTexture(object_Tex);
+		SDL_DestroyRenderer(renderer);
+		object_Tex = NULL;
+		renderer = NULL;
+	};
 	void Update();
 	void Render();
 };

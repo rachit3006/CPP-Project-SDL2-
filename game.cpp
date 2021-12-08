@@ -1,11 +1,16 @@
+#include<vector>
 #include"game.h"
 #include "Player.h"
 #include "BackGround.h"
 #include"TextureManager.h"
 #include"game_object.h"
+#include "Bullet.h"
 
 Player* player;
+vector<Bullet *> bullets;
 BackGround* background;
+
+int window_height = 600, window_width = 1500;
 
 game::game()
 {
@@ -47,8 +52,8 @@ void game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 
 	//Create Game_objects
-	player = new Player("assets/player.png", renderer, 0, 0, 600, 1500, 85, 77, 65);
-	background = new BackGround("assets/back.png", renderer, 0, 0, 600, 1500);
+	player = new Player("assets/player.png", renderer, 0, 0, window_height, window_width, 85, 77, 65);
+	background = new BackGround("assets/back.png", renderer, 0, 0, window_height, window_width);
 }
 
 void game::HandleEvents() //Handle Various events happening
@@ -56,14 +61,18 @@ void game::HandleEvents() //Handle Various events happening
 	SDL_Event event;
 	SDL_PollEvent(&event);
 	const  Uint8* keystates = SDL_GetKeyboardState(NULL);
+	
 	if (event.type == SDL_QUIT)
 	{
 		is_running = false;
 	}
-	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
-	{
-		//Event corresponding to Mouse click i.e shoot
+	
+	if (event.type == SDL_KEYUP){
+		if (event.key.keysym.sym == SDLK_RETURN){
+			bullets.push_back(new Bullet("assets/bullet.png", renderer, player->getx(), player->gety(), window_height, window_width, 595, 420));
+		}
 	}
+    
 	if (keystates[SDL_SCANCODE_SPACE])
 	{
 		//Event for jump.
@@ -78,6 +87,12 @@ void game::update() //Game Logic is Handled Here
 {
 	//Update your game objects here
 	player->update();
+	for(int i=0;i<bullets.size();i++){
+		bullets[i]->update();
+		if(bullets[i]->getx() > window_width + bullets[i]->getwidth()){
+			bullets.erase(bullets.begin() + i);
+		}
+	} 
 }
 
 void game::render()
@@ -86,6 +101,7 @@ void game::render()
 	//Render Your game objects here from there respective functions
 	background->Render();
 	player->Render();
+	for(Bullet* bullet : bullets) bullet->Render();
 	SDL_RenderPresent(renderer);
 }
 
