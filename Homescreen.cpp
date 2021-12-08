@@ -22,7 +22,7 @@ void Window::makeWindow(const char* title, int width, int height)
     SDL_Rect dest;
     dest.x=0;
     dest.y=100;
-    bg_image=SDL_LoadBMP("/home/born2win685/Desktop/cpp_project/images/back.bmp");
+    bg_image=SDL_LoadBMP("images/back.bmp");
     SDL_BlitSurface(bg_image, NULL,surface,&dest);
     SDL_UpdateWindowSurface(window);
 }

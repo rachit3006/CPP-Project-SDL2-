@@ -5,8 +5,8 @@ int main(int argc, char* args[])
 {
     Window* w = new Window();
     w->makeWindow("Game",1250,650);
-    w->set_button("/home/born2win685/Desktop/cpp_project/images/download.bmp",100,520);
-    w->set_button("/home/born2win685/Desktop/cpp_project/images/instructions.bmp",1100,520);
+    w->set_button("images/download.bmp",100,520);
+    w->set_button("images/instructions.bmp",1100,520);
     Buttons* b = new Buttons();
     //flag  work
     //1     new game
