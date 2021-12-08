@@ -3,9 +3,9 @@
 
 int main(int argc, char* args[])
 {
-    Window w;
-    w.makeWindow("Game",500,400);
-    while(1)
-    ;
+    Window* w = new Window();
+    w->makeWindow("Game",1245,700);
+
+
     return 0;
 }
