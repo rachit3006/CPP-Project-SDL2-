@@ -3,7 +3,7 @@
 #include "game.h"
 class game_object
 {
-private:
+protected:
 	int xpos;
 	int ypos;
 	SDL_Texture* object_Tex;

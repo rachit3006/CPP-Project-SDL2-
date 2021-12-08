@@ -1,6 +1,9 @@
 #include"game.h"
+#include "Player.h"
 #include"TextureManager.h"
 #include"game_object.h"
+
+Player* player;
 
 game::game()
 {
@@ -42,6 +45,7 @@ void game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 
 	//Create Game_objects
+	player = new Player("assets/player.png", renderer, 0, 0);
 }
 
 void game::HandleEvents() //Handle Various events happening
@@ -67,6 +71,7 @@ void game::render()
 {
 	SDL_RenderClear(renderer);
 	//Render Your game objects here from there respective functions
+	player->Render();
 	SDL_RenderPresent(renderer);
 }
 
