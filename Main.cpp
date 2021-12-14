@@ -10,7 +10,7 @@ int main(int argc, char* args[])
 	const int Frame_Delay = 1000 / FPS; //Expected Time between Frames
 
 	Uint32 FrameStart;
-	int frametime;
+	long long int frametime;
 
 	while (g->Is_Running())
 	{

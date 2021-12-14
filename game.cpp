@@ -5,7 +5,6 @@
 #include<vector>
 #include "Bullet.h"
 
-
 SDL_Renderer* game :: renderer = NULL;
 vector<Bullet*> bullets;
 Player* player;
@@ -54,10 +53,37 @@ void game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	//Create Game_objects
 	CurrScore_tex = NULL;
 	Curr_Score = 0;
+	x_back = 0;
 	
-	backgrnd = TextureManager::LoadTexture("assets/back.png");
+	backgrnd = TextureManager::LoadTexture("assets/background.png");
 	player = new Player("assets/player.png", renderer, 0, 0, window_height, window_width, 85, 77, 65);
 
+	Display_rect.x = 0;
+	Display_rect.y = 0;
+	Display_rect.w = window_width;
+	Display_rect.h = window_height;
+	
+	Back_rect.x = x_back;
+	Back_rect.y = 0;
+	Back_rect.h = window_height;
+	Back_rect.w = window_width;
+
+	Back_rect2.x = 0;
+	Back_rect2.y = 0;
+	Back_rect2.h = window_height;
+	Back_rect2.w = window_width;
+
+	Score_rect.x = 1200;
+	Score_rect.y = 0;
+	Score_rect.w = 300;
+	Score_rect.h = 80;
+
+	Ammo_rect.x = 0;
+	Ammo_rect.y = 530;
+	Ammo_rect.w = 250;
+	Ammo_rect.h = 70;
+
+	Update_Background();
 	Update_Score_TexandAmmo();
 }
 
@@ -95,6 +121,9 @@ void game::update() //Game Logic is Handled Here
 {
 	//Update your game objects here
 
+	Back_rect.x = x_back;
+	x_back += 10;
+
 	player->update();
 	for (int i = 0;i < bullets.size();i++) {
 		bullets[i]->update();
@@ -104,36 +133,57 @@ void game::update() //Game Logic is Handled Here
 	}
 
 	Curr_Score = Curr_Score + (0.167);
+	Update_Background();
 	Update_Score_TexandAmmo();
 }
 
 void game::render()
 {
-	SDL_Rect rect;
-	rect.x = 0;
-	rect.y = 0;
-	rect.h = 600;
-	rect.w = 1500;
-
-	SDL_Rect Score_rect;
-	Score_rect.x = 1300;
-	Score_rect.y = 0;
-	Score_rect.w = 200;
-	Score_rect.h = 80;
-
-	SDL_Rect Ammo_rect;
-	Ammo_rect.x = 0;
-	Ammo_rect.y = 530;
-	Ammo_rect.w = 200;
-	Ammo_rect.h = 70;
-
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, backgrnd, &rect, &rect);
+
+	SDL_RenderCopy(renderer, backgrnd, &Back_rect, &Display_rect);
+	if (Back_rect.x > (4109 - 1500) && Back_rect.x < 4109)
+	{
+		SDL_RenderCopy(renderer, backgrnd, &Back_rect2, &Display_rect2);
+		cout << Back_rect.x << endl;
+	}
+
 	SDL_RenderCopy(renderer, CurrScore_tex, NULL, &Score_rect);
 	SDL_RenderCopy(renderer, Show_Ammo, NULL, &Ammo_rect);
 	player->Render();
 	for (Bullet* bullet : bullets) bullet->Render();
 	SDL_RenderPresent(renderer);
+}
+
+void game::Update_Background()
+{
+	if (Back_rect.x +1500 > 4109 && Back_rect.x < 4109)
+	{
+		Display_rect.w = 4109 - Back_rect.x;
+		Display_rect2.x = Display_rect.w;
+		Display_rect2.y = 0;
+		Display_rect2.h = window_height;
+		Display_rect2.w = window_width - Display_rect.w;
+
+		Back_rect.w = Display_rect.w;
+		Back_rect2.x = 0;
+		Back_rect2.y = 0;
+		Back_rect2.h = window_height;
+		Back_rect2.w = window_width - Display_rect.w;
+
+	}
+	if (Back_rect.x < (4109 - 1500) && Back_rect.x>=0)
+	{
+		Display_rect.w = window_width;
+		Back_rect.w = window_width;
+	}
+	if (Back_rect.x > 4109)
+	{
+		Back_rect.x -= 4109;
+		x_back = 0;
+		Display_rect.w = window_width;
+		Back_rect.w = window_width;
+	}
 }
 
 void game:: Update_Score_TexandAmmo() 
