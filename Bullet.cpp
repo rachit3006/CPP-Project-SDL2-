@@ -2,14 +2,14 @@
 
 using namespace std;
 
-int Bullet::getx(){
+int Bullet::getx() {
     return des_rec.x;
 }
 
-int Bullet::getwidth(){
+int Bullet::getwidth() {
     return width;
 }
 
-void Bullet::update(){
+void Bullet::update() {
     des_rec.x += velocity;
 }
