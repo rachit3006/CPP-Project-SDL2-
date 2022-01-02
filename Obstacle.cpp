@@ -16,6 +16,13 @@ int Obstacle::generateRandomNumber(int min, int max)
     std::uniform_int_distribution<int> uni(min, max);
     auto random_integer = uni(rng);
     return random_integer;
+    // static bool flag = true;
+    // if (flag)
+    // {
+    //     srand(time(NULL));
+    //     flag = false;
+    // }
+    // return min + rand() % ((max + 1) - min);
 }
 
 void Obstacle::update(double delta_time, double rate)

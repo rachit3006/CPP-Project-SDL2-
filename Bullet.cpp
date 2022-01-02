@@ -13,3 +13,8 @@ int Bullet::getwidth() {
 void Bullet::update() {
     des_rec.x += velocity;
 }
+
+SDL_Rect Bullet::getBulletRect()
+{
+    return des_rec;
+}

@@ -10,6 +10,11 @@ game_object::game_object(const char* texturesheet, SDL_Renderer* ren, int x, int
 	ypos = y;
 }
 
+game_object::~game_object()
+{
+	
+}
+
 void game_object::Render()
 {
 	SDL_RenderCopy(renderer, object_Tex, &src_rec, &des_rec);
