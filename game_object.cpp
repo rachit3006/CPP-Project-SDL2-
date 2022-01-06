@@ -1,8 +1,8 @@
 
-#include"game_object.h"
-#include"TextureManager.h"
-
-game_object::game_object(const char* texturesheet, SDL_Renderer* ren, int x, int y)
+#include "game_object.h"
+#include "TextureManager.h"
+// The game_object class is the base class for player , obstacles etc.
+game_object::game_object(const char *texturesheet, SDL_Renderer *ren, int x, int y)
 {
 	renderer = ren;
 	object_Tex = TextureManager::LoadTexture(texturesheet);
@@ -12,9 +12,8 @@ game_object::game_object(const char* texturesheet, SDL_Renderer* ren, int x, int
 
 game_object::~game_object()
 {
-	
 }
-
+// For rendering different game_objects
 void game_object::Render()
 {
 	SDL_RenderCopy(renderer, object_Tex, &src_rec, &des_rec);

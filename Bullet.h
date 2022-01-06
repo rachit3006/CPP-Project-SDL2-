@@ -4,6 +4,7 @@ class Bullet : public game_object
 {
 private:
     int window_height, window_width, height, width;
+    // velocity of the bullet
     float velocity = 10;
 
 public:
@@ -19,13 +20,16 @@ public:
         src_rec.w = width;
         src_rec.x = 0;
         src_rec.y = 0;
+        // scaling the size
         des_rec.h = height / 10;
         des_rec.w = width / 10;
         des_rec.x = x;
         des_rec.y = y;
     };
 
+    // getter functions and update
     int getx();
+    
     SDL_Rect getBulletRect();
 
     int getwidth();

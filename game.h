@@ -2,12 +2,12 @@
 #define GAME_HPP
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
+//#include <SDL2/SDL_mixer.h>
 #include <string>
 #include <iostream>
 #include <vector>
 #include "Rect.h"
-using namespace std;
+//using namespace std;
 
 class game
 {
@@ -35,7 +35,8 @@ public:
 	~game();
 	static SDL_Renderer *renderer;
 	static SDL_Event *event;
-	static vector<Mix_Chunk *> audioList;
+	// static vector<Mix_Chunk *> audioList;
+	double get_score();
 	void init(const char *title, int xpos, int ypos, int width, int height, bool full_ornot);
 	void HandleEvents();
 	void update();
@@ -43,7 +44,7 @@ public:
 	void generateObstacles();
 	void obstacleCollisionDetection();
 	void bulletAndObstacleCollisionDetection();
-	void clean(vector<Mix_Chunk *> audioList);
+	void clean();
 	void Update_Score_TexandAmmo();
 	void Update_Background();
 	void spawnRects(SDL_Renderer *renderer);

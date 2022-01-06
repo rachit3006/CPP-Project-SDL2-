@@ -28,6 +28,7 @@ public:
         des_rec.y = window_height - src_rec.h - platform_height;
     };
 
+    // getter, setter and update functions
     int getx();
     int gety();
     int get_ammo();

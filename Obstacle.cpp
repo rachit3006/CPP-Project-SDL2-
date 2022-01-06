@@ -5,9 +5,12 @@
 #include "game.h"
 #include "game_object.h"
 
-/*
+/**
  *
  * @ref https://stackoverflow.com/a/19728404/15069364
+ * This function generates a random number in range (min, max) and
+ * gives uniform distribution of numbers which is not in the case
+ * of rand().
  */
 int Obstacle::generateRandomNumber(int min, int max)
 {
@@ -25,6 +28,9 @@ int Obstacle::generateRandomNumber(int min, int max)
     // return min + rand() % ((max + 1) - min);
 }
 
+/**
+ * moves obstacle to the left and updates it's position.
+ */
 void Obstacle::update(double delta_time, double rate)
 {
     xpos -= (rate * delta_time);
@@ -35,7 +41,6 @@ void Obstacle::update(double delta_time, double rate)
 void Obstacle::render()
 {
     SDL_RenderCopy(game::renderer, object_Tex, NULL, &des_rec);
-    // SDL_RenderCopyEx(game::renderer, object_Tex, NULL, &des_rec, angle, NULL, SDL_FLIP_NONE);
 }
 
 int Obstacle::getXPos()
@@ -48,6 +53,9 @@ int Obstacle::getYPos()
     return des_rec.y;
 }
 
+/**
+ * returns SDL_Rect of an obstacle object which is used in collision detection functions.
+ */
 SDL_Rect Obstacle::getObstacleRect()
 {
     return des_rec;

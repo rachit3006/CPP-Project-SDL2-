@@ -1,11 +1,19 @@
 #include "Math.h"
 using namespace std;
 
+
+/*
+* Chooses a random operation type to display on the rectangles. 
+*/
 int Math::choose_optype(int num_choices)
 {
     srand(time(NULL));
     return rand() % num_choices;
 }
+
+/*
+* Generates two operations such that both rectangles display addition operations. 
+*/
 
 int Math::gen_addscore(int ammo)
 {
@@ -17,6 +25,10 @@ int Math::gen_addscore(int ammo)
     int score2 = (int)(ammo / 8) + rand() % ((int)((ammo / 2) - (ammo / 8)));
     return max(score1, score2);
 }
+
+/*
+* Generates two operations such that both rectangles display subtraction operations.
+*/
 int Math::gen_subscore(int ammo, int flag)
 {
     if (ammo == 1 && flag == 0)
@@ -34,6 +46,10 @@ int Math::gen_subscore(int ammo, int flag)
 
     return max(score1, score2);
 }
+
+/*
+* Generates two operations such that one rectangle displays addition operation and the other displays subtraction operation.
+*/
 
 int Math::gen_addandsubscore(int ammo, int flag)
 {
@@ -59,6 +75,10 @@ int Math::gen_addandsubscore(int ammo, int flag)
     }
 }
 
+/*
+* Generates two operations such that one rectangle displays addition operation and the other displays multiplication operation.
+*/
+
 double Math::gen_addandmulscore(int ammo, int flag)
 {
     if (flag == 0)
@@ -81,6 +101,10 @@ double Math::gen_addandmulscore(int ammo, int flag)
         return score;
     }
 }
+
+/*
+* Generates two operations such that one rectangle displays subtraction operation and the other displays division operation.
+*/
 
 int Math::gen_subanddivscore(int ammo, int flag)
 {

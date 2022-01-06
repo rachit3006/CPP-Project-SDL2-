@@ -11,6 +11,7 @@ int Bullet::getwidth() {
 }
 
 void Bullet::update() {
+    // making the bullet travel horizontally
     des_rec.x += velocity;
 }
 

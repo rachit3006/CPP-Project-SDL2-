@@ -9,7 +9,7 @@ class Obstacle : public game_object
 
 private:
     static double delta_time;
-    int angle;
+    // int angle;
 
 public:
     Obstacle(const char *textureSheet, SDL_Renderer *ren, int x, int y, int Obstacle_Width, int Obstacle_Height) : game_object(textureSheet, ren, x, y)
@@ -17,7 +17,7 @@ public:
         object_Tex = TextureManager::LoadTexture(textureSheet);
         xpos = x;
         ypos = Obstacle::generateRandomNumber(0, 600 - Obstacle_Height);
-        angle = Obstacle::generateRandomNumber(-90, 90);
+        // angle = Obstacle::generateRandomNumber(-90, 90);
         src_rec.w = Obstacle_Width;
         src_rec.h = Obstacle_Height;
         src_rec.x = 0;
