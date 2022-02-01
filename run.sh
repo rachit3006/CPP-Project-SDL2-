@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 
 # A simple bash script to compile and run the game
 
